@@ -1,11 +1,12 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+import express from 'express';
+import bodyParser from 'body-parser';
+import env from './environment/environment';
+
 const app = express();
-const PORT = 9000 || process.env.PORT;
+const PORT = env.getPort();
 
-app.use(express.json());
-
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
